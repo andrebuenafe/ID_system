@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://brightspot-assets.churchofjesuschrist.org/dims4/default/a7b7563/2147483647/strip/false/crop/800x800+0+0/resize/500x500!/format/jpg/quality/90/?url=https%3A%2F%2Fassets.churchofjesuschrist.org%2F36b8dc6c6acc1ddddaf0c324ffc520ec6ce51185.jpeg" width="400"></a></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
