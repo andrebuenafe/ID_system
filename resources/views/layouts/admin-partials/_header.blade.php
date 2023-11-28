@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Diary</title>
+    <title>ID SYSTEM</title>
 
      <!-- Favicon -->
      <link rel="icon" type="image/x-icon" href="{{ asset('image/book-png-18.ico') }}">
