@@ -14,6 +14,20 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
+
+    <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
+        <a class="nav-link" href="/admin">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Student</span></a>
+    </li>
+
+    <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
+        <a class="nav-link" href="/admin">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>User</span></a>
+    </li>
+
+    
     
     <!-- Divider -->
     <hr class="sidebar-divider">
