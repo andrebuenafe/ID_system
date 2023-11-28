@@ -17,22 +17,14 @@
             </a>
            
         </li>
-
-
         
         <div class="topbar-divider d-none d-sm-block"></div>
-
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
-                {{-- @if ( Session::get('USERIMG') == Null )
-                    <img src="{{ asset('image/person.png') }}" alt="Profile Image Placeholder" class="img-profile rounded-circle">
-                @else 
-                    <img class="img-profile rounded-circle" src="{{ asset('storage/'.Session::get('USERIMG')) }}">
-                @endif                 --}}
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
