@@ -18,4 +18,12 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
+     <!-- Nav Item - Charts -->
+     <li class="nav-item {{ Str::is('Student*', request()->route()->getName()) ? 'active' : '' }}">
+        <a class="nav-link" href="#">
+            <i class="fas fa-solid fa-book-open"></i>
+            <span>Student</span>
+        </a>
+    </li>
+
 </ul>
