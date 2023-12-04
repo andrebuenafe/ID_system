@@ -22,7 +22,7 @@
 
     <li class="nav-item {{ Str::startsWith(request()->path(), 'users') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('users.index') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fas fa-users"></i>
             <span>Users</span>
         </a>
     </li>
