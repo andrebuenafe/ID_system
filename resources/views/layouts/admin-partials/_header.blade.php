@@ -30,13 +30,14 @@
     <!-- Font Awesome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" integrity="sha512-mNqZ+3hD41PWN4zQ0sIuvPdJge1Q4u8NEJ/3OP+SZlO+q+wgt6Uq8sKlJ4yUJh3uoI5Bo2zUqatjO4OMDfhC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
 
      {{-- Custom CSS --}}
      <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-     
+
     <!-- Sweetalert CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.css">
 
