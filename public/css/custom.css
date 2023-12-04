@@ -1,0 +1,13 @@
+
+
+#users-table_filter,
+#diaries-table_filter,
+#approval-requests-table_filter{
+    text-align: right;
+}
+#users-table_paginate,
+#diaries-table_paginate,
+#approval-requests-table_paginate{
+    display: flex;
+    justify-content: end;
+}
