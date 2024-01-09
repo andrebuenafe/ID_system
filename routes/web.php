@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StudentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +38,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 
 
-
+    // Students routes
+    Route::resource('/students', StudentsController::class);
+    Route::get('/students', [StudentsController::class, 'index'])->name('students.index');
 
 
 });
