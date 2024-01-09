@@ -9,27 +9,33 @@
     </a>
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
-        <a class="nav-link" href="/admin">
+
+    <li class="nav-item {{ Str::startsWith(request()->path(), 'admin') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Dashboard</span>
+        </a>
     </li>
 
-    <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
-        <a class="nav-link" href="/admin">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Student</span></a>
+
+    <!-- Nav Item - User -->
+
+    <li class="nav-item {{ Str::startsWith(request()->path(), 'users') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('users.index') }}">
+            <i class="fas fa-users"></i>
+            <span>Users</span>
+        </a>
     </li>
 
-    <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
-        <a class="nav-link" href="/admin">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>User</span></a>
-    </li>
 
-    
-    
     <!-- Divider -->
     <hr class="sidebar-divider">
+
+    <li class="nav-item {{ Str::startsWith(request()->path(), 'users') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('students.index') }}">
+            <i class="fas fa-users"></i>
+            <span>Students</span>
+        </a>
+    </li>
 
 </ul>

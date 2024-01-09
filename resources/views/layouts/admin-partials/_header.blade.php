@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -10,45 +10,44 @@
 
     <title>ID SYSTEM</title>
 
-     <!-- Favicon -->
-     <link rel="icon" type="image/x-icon" href="{{ asset('image/book-png-18.ico') }}">
 
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
+     <!-- jQuery Script -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- DataTables Script -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('image/book-png-18.ico') }}">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" integrity="sha512-mNqZ+3hD41PWN4zQ0sIuvPdJge1Q4u8NEJ/3OP+SZlO+q+wgt6Uq8sKlJ4yUJh3uoI5Bo2zUqatjO4OMDfhC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
 
-    <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+     {{-- Custom CSS --}}
+     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
-    <!-- Custom styles for this template-->
-    <link href="{{  asset('css/sb-admin-2.min.css') }}" rel="stylesheet"> 
+    <!-- Sweetalert CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.css">
 
-        <!-- Sweetalert cdn-->
+    <!-- Dropify CSS -->
+    <link rel="stylesheet" href="{{ asset('css/dropify.css') }}">
 
-    <link rel="stylesheet" href="sweetalert2.min.css">
 
-       <!-- Dropify CSS-->
 
-       <link rel="stylesheet" href="{{ asset('css/dropify.css') }}">
-
-     <!-- jQuery Scripts -->
-
-     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        
-    
+    <!-- App Script -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
 </head>
 <body id="page-top">

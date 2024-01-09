@@ -10,9 +10,9 @@
           <!-- Sidebar -->
 
             @include('layouts.admin-partials._sidebar')
-            
+
         <!-- End of Sidebar -->
-        
+
         <!-- Content Wrapper -->
 
         <div id="content-wrapper" class="d-flex flex-column">
@@ -32,7 +32,7 @@
                     <main>
                         @yield('content')
                     </main>
-            
+
                 </div>
 
             </div>
@@ -49,6 +49,8 @@
 
     </div>
     <!-- End of Page Wrapper -->
+
+    @include('layouts.admin-partials._logout-modal')
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
