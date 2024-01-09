@@ -1,3 +1,4 @@
+    
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
 
@@ -15,7 +16,7 @@
 
         <!-- Sweetalert scripts-->
 
-    {{-- <script src="sweetalert2.all.min.js"></script> --}}
+    <script src="sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
 

@@ -56,40 +56,78 @@ class UsersController extends Controller
 
 
 }
-/*
-    public function edit()
+public function edit($id)
     {
         $user = User::findOrFail($id);
 
-        return view('admin.user.edit', compact('user'));
+        return view('admin.users.edit', compact('user'));
     }
- */
 
-    public function generateDatatables($users)
+    public function update(Request $request, $id)
     {
-        return DataTables::of($users)
-            ->addIndexColumn()
-            ->addColumn('role', function ($data) {
-                $role = '';
-                if ($data->role == 1) {
-                    $role = '<span class="badge badge-primary">Administrator</span>';
-                } else if ($data->role == 2) {
-                    $role = '<span class="badge badge-warning">Staff</span>';
-                }
-                return $role;
-            })
-            ->addColumn('action', function ($data) {
-                $actionButtons = '<a href="' . route("users.edit", $data->id) . '" data-id="' . $data->id . '" class="btn btn-sm btn-warning editUser">
-                                        <i class="fas fa-edit"></i>
-                                      </a>
-                                      <button data-id="' . $data->id . '" class="btn btn-sm btn-danger" onclick="confirmDelete(' . $data->id . ')">
-                                        <i class="fas fa-trash"></i>
-                                      </button>';
-                return $actionButtons;
-            })
-            ->rawColumns(['action', 'role'])
-            ->make(true);
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email',
+                'role' => 'required|numeric',
+            ]);
+
+            $user = User::findOrFail($id);
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'role' => $request->role,
+            ]);
+
+            return redirect()->route('users.index')->with('success', 'User updated successfully!');
+        } catch (ValidationException $e) {
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        }
     }
+
+
+
+public function destroy(User $user)
+{
+    $user->delete();
+    
+    return redirect()->route('users.index')->with('success', 'User deleted successfully');
+}
+
+
+public function generateDatatables($users)
+{
+    return DataTables::of($users)
+        ->addIndexColumn()
+        ->addColumn('role', function ($data) {
+            $role = '';
+            if ($data->role == 1) {
+                $role = '<span class="badge badge-primary">Administrator</span>';
+            } elseif ($data->role == 2) {
+                $role = '<span class="badge badge-warning">Staff</span>';
+            }
+            return $role;
+        })
+        ->addColumn('action', function ($data) {
+            $actionButtons = '<a href="' . route("users.edit", $data->id) . '" data-id="' . $data->id . '" class="btn btn-sm btn-warning editUser">
+                                    <i class="fas fa-edit"></i> 
+                                </a>
+                                <form action="' . route("users.destroy", $data->id) . '" method="POST" class="d-inline">
+                                ' . csrf_field() . '
+                                ' . method_field('DELETE') . '
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="confirmDelete(' . $data->id . ')">
+                                    <i class="fas fa-trash"></i> 
+                                </button>
+                            </form>';
+                            
+                            
+            return $actionButtons;
+        })
+        ->rawColumns(['action', 'role'])
+        ->make(true);
+}
+
+
 
     private function sendNewUserEmail($user, $password)
     {
