@@ -29,14 +29,20 @@
 
                 <div class="form-group col-md-6">
                     <label for="qr">QR</label>
-                    <input type="file" class="form-control" id="qr" placeholder="QR Code" name="qr" required
-                        value="{{ old('qr') }}">
+                    <input type="file" class="form-control" id="qr" placeholder="QR Code" name="qr">
+
+                    @if(isset($students) && $students->qr)
+                    <img src="{{ asset('storage/' . $students->qr) }}" alt="QR Image" style="max-width: 100%">
+                @endif                
                 </div>
 
                  <div class="form-group col-md-6">
                     <label for="signature">Signature</label>
-                    <input type="file" class="form-control" id="signature" placeholder="Last Name" name="signature" required
-                        value="{{ old('signature') }}">
+                    <input type="file" class="form-control" id="signature" placeholder="Last Name" name="signature">
+
+                    @if(isset($students) && $students->signature)
+                    <img src="{{ asset('storage/' . $students->signature) }}" alt="Signature Image" style="width: 100%">
+                @endif                   
                 </div> 
 
                 <div class="form-group col-md-6">
@@ -49,16 +55,19 @@
                     <label for="course">Course</label>
                     <select name="course" id="course" class="form-control">
                         <option value="" selected disabled>Select a Course</option>
-                        <option value="1">BSIT</option>
-                        <option value="2">BSED</option>
-                        <option value="3">BEED</option>
+                        <option value="BSIT">BSIT</option>
+                        <option value="BSED">BSED</option>
+                        <option value="BEED">BEED</option>
                     </select>
                 </div>
 
                  <div class="form-group col-md-6">
                     <label for="img">Image</label>
-                    <input type="file" class="form-control" id="img" placeholder="Image" name="img"
-                        required value="{{ old('img') }}">
+                    <input type="file" class="form-control" id="img" placeholder="Image" name="img">
+
+                    @if(isset($students) && $students->img)
+                    <img src="{{ asset('storage/' . $students->img) }}" alt="Student Image" style="max-width: 100%">
+                @endif
                 </div> 
 
                 <div class="form-group col-md-6">

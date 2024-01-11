@@ -9,6 +9,7 @@ use App\Models\Student;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class StudentsController extends Controller
 {
@@ -23,6 +24,7 @@ class StudentsController extends Controller
             return $this->generateDatatables(Student::all());
         }
         $students = Student::all();
+        
 
         return view('admin.students.index', compact('students'));
 
@@ -51,25 +53,70 @@ class StudentsController extends Controller
                 'firstname' => 'required|string|max:255',
                 'lastname' => 'required|string|max:255',
                 'address' => 'required|string|max:255',
-                'qr' => 'required|file|max:1024',
-                'signature' => 'required|file|max:1024',
+                'qr' => 'required|file|max:9024|mimes:jpeg,png',
+                'signature' => 'required|file|max:9024|mimes:jpeg,png',
                 'school' => 'required|string|max:255',
                 'course' => 'required|string|max:255',
-                'img' => 'required|file|max:9024',
+                'img' => 'required|file|max:9024|mimes:jpeg,png',
                 'parentsname' => 'required|string|max:255',
                 'emcontact' => 'required|string|max:255',
                 
             ]);
+
+              // file upload QRS
+              $now = new \DateTime('NOW');
+              $date = $now->format('m-d-Y_H.i.s');
+  
+              if($request->has('qr')){
+                  $students_qr_WithExt = $request->file('qr')->getClientOriginalName();
+                  $students_qr_filename = str_replace(' ','_',pathinfo($students_qr_WithExt, PATHINFO_FILENAME));
+                  $students_qr_extension = $request->file('qr')->getClientOriginalExtension();
+                  $students_qr = $students_qr_filename.'-'.$date.'.'.$students_qr_extension;
+                  $path_students_qr = $request->file('qr')->storeAs('qrs', $students_qr);
+              } else {
+                  $students_qr = 'No Data';
+              }
+
+                // file upload Signatures
+            $now = new \DateTime('NOW');
+            $date = $now->format('m-d-Y_H.i.s');
+
+            if($request->has('signature')){
+                $students_signature_WithExt = $request->file('signature')->getClientOriginalName();
+                $students_signature_filename = str_replace(' ','_',pathinfo($students_signature_WithExt, PATHINFO_FILENAME));
+                $students_signature_extension = $request->file('signature')->getClientOriginalExtension();
+                $students_signature = $students_signature_filename.'-'.$date.'.'.$students_signature_extension;
+                $path_students_signature = $request->file('signature')->storeAs('signatures', $students_signature);
+            } else {
+                $students_signature = 'No Data';
+            }
+              // file upload IMG
+              $now = new \DateTime('NOW');
+              $date = $now->format('m-d-Y_H.i.s');
+                
+              if($request->has('img')){
+                  $students_Img_WithExt = $request->file('img')->getClientOriginalName();
+                  $students_Img_filename = str_replace(' ','_',pathinfo($students_Img_WithExt, PATHINFO_FILENAME));
+                  $students_Img_extension = $request->file('img')->getClientOriginalExtension();
+                  $students_img = $students_Img_filename.'-'.$date.'.'.$students_Img_extension;
+                  $path_students_img = $request->file('img')->storeAs('images', $students_img);
+              } else {
+                  $students_img = 'No Data';
+              }
+            // $qrPath = $request->file('qr')->store('public/qrs');
+            // $signaturePath = $request->file('signature')->store('public/signatures');
+            // $imgPath = $request->file('img')->store('public/images');
+    
     
             $student = Student::create([
                 'fname' => $request->firstname,
                 'lname' => $request->lastname,
                 'address' => $request->address,
-                'qr' => $request->qr,
-                'signature' => $request->signature,
+                'qr' => $path_students_qr,
+                'signature' => $path_students_signature,
                 'school_id' => $request->school,
                 'course' => $request->course,
-                'img' => $request->img,
+                'img' => $path_students_img,
                 'parents_name' => $request->parentsname,
                 'em_contact' => $request->emcontact,
              
@@ -154,7 +201,19 @@ class StudentsController extends Controller
                                       </button>';
                 return $actionButtons;
             })
-            ->rawColumns(['action'])
+            ->addColumn('student-img', function($data){
+                $studentImg = '<img src="storage/'.$data->img.'" width="50%"/>';
+                return $studentImg;
+            })
+            ->addColumn('signature', function($data){
+                $signatureImg = '<img src="storage/'.$data->signature.'" width="50%"/>';
+                return $signatureImg;
+            })
+            ->addColumn('qr', function($data){
+                $qrImg = '<img src="storage/'.$data->qr.'" width="100%"/>';
+                return $qrImg;
+            })
+            ->rawColumns(['action','student-img','signature','qr'])
             ->make(true);
     }
 }
