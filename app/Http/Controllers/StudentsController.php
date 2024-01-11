@@ -198,7 +198,10 @@ class StudentsController extends Controller
                                       </a>
                                       <button data-id="' . $data->id . '" class="btn btn-sm btn-danger" onclick="confirmDelete(' . $data->id . ')">
                                         <i class="fas fa-trash"></i>
-                                      </button>';
+                                      </button>
+                                      <button data-id="' . $data->id . '" class="btn btn-sm btn-secondary" onclick="confirmDelete(' . $data->id . ')">
+                                        <i class="fas fa-solid fa-eye"></i>
+                                        </button>';
                 return $actionButtons;
             })
             ->addColumn('student-img', function($data){
