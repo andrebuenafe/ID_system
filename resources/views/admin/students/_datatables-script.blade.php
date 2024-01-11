@@ -17,7 +17,7 @@
                 { data: 'signature', name: 'signature' },
                 { data: 'school_id', name: 'school_id' },
                 { data: 'course', name: 'course' },
-                { data: 'img', name: 'img' },
+                { data: 'student-img', name: 'img' },
                 { data: 'parents_name', name: 'parents_name' },
                 { data: 'em_contact', name: 'em_contact' },
                 { data: 'action', name: 'action', orderable: false },
