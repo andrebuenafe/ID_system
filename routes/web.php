@@ -43,7 +43,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Students routes
     Route::resource('/students', StudentsController::class);
-    Route::get('/students', [StudentsController::class, 'index'])->name('students.index');
 
 
 });
