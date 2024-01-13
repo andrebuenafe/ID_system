@@ -9,18 +9,12 @@
             serverSide: true,
             ajax: '{{ route('students.index') }}',
             columns: [
-                { data: 'DT_RowIndex', name: 'index'},
+                { data: 'action', name: 'action', orderable: false },
+                // { data: 'DT_RowIndex', name: 'index'},
+                { data: 'school_id', name: 'school_id' },
                 { data: 'fname', name: 'fname' },
                 { data: 'lname', name: 'lname' },
-                { data: 'address', name: 'address' },
-                { data: 'qr', name: 'qr' },
-                { data: 'signature', name: 'signature' },
-                { data: 'school_id', name: 'school_id' },
                 { data: 'course', name: 'course' },
-                { data: 'student-img', name: 'img' },
-                { data: 'parents_name', name: 'parents_name' },
-                { data: 'em_contact', name: 'em_contact' },
-                { data: 'action', name: 'action', orderable: false },
             ],
             order: [[2, 'asc']], // Assuming 'email' is the third column (index 2)
         });
