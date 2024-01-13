@@ -19,18 +19,11 @@
             <table class="table table-sm table-hover table-striped mb-0" id="students-table">
               <thead>
                 <tr>
-                  <th scope="col">ID</th>
+                  <th scope="col">Action</th>
+                  <th scope="col">School ID</th>
                   <th scope="col">First Name</th>
                   <th scope="col">Last Name</th>
-                  <th scope="col">Address</th>
-                  <th scope="col">QR</th>
-                  <th scope="col">Signature</th>
-                  <th scope="col">School ID</th>
                   <th scope="col">Course</th>
-                  <th scope="col">Image</th>
-                  <th scope="col">Parents Name</th>
-                  <th scope="col">Emergency Contact</th>
-                  <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -41,4 +34,3 @@
  @include('admin.students._datatables-script')
 
 @endsection
-
