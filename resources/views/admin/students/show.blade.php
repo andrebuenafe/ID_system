@@ -27,6 +27,7 @@
                     <div id="student-name">
                         <h2 class="last-name text-uppercase">{{ $student->lname }}</h2>
                         <h3 class="first-name text-uppercase">{{ $student->fname }}</h3>
+                  
                         <div class="extra-details">
                             <div class="dob">
                                 <p class="my-0">Date of Birth:</p>
@@ -67,6 +68,7 @@
                                     First
                                 </div>
                                 <div class="border pl-4 text-uppercase">
+                       
                                     Second
                                 </div>
                             </div>
@@ -95,7 +97,9 @@
                     </div>
                 </div>
                 <div class="row back-side-blurb text-center">
+
                     <div class="offset-3 col-9 text-dark px-3">
+
                         <div class="certify-box mt-3 px-1">
                             This is to certify that the person whose picture and signature appear herein is a bonafide student of<br><strong>MLG College of Learning, Inc.</strong>
                         </div>
@@ -121,7 +125,9 @@
                             <h5 class="mb-0"><strong>{{$student->em_contact}}</strong></h5>
                         </div>
                         <div class="qr-scan-box bg-secondary text-uppercase text-white p-2 m-2">
+
                             <small>Please scan the QR Code at the Front for more validation & Contact Information.</small>
+
                         </div>
                     </div>
                 </div>
