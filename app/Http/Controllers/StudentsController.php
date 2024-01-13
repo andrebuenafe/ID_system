@@ -137,7 +137,10 @@ class StudentsController extends Controller
      */
     public function show($id)
     {
-        //
+        // dd($id);
+        $student = Student::where('id','=',$id)->first();
+
+        return view('admin.students.show',compact('student'));
     }
 
     /**
@@ -197,9 +200,9 @@ class StudentsController extends Controller
                                       <button data-id="' . $data->id . '" class="btn btn-sm btn-danger" onclick="confirmDelete(' . $data->id . ')">
                                         <i class="fas fa-trash"></i>
                                       </button>
-                                      <button data-id="' . $data->id . '" class="btn btn-sm btn-secondary" onclick="confirmDelete(' . $data->id . ')">
-                                        <i class="fas fa-solid fa-eye"></i>
-                                        </button>';
+                                      <a href="' . route("students.show", $data->id) . '" data-id="' . $data->id . '" class="btn btn-sm btn-secondary showStudent">
+                                        <i class="fas fa-print"></i>
+                                      </a>';
                 return $actionButtons;
             })
             ->addColumn('student-img', function($data){
