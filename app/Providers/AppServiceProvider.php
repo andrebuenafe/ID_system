@@ -23,11 +23,7 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-<<<<<<< HEAD
-    {
-=======
     {   
->>>>>>> 0e7da61e8986a5b15ddd65ebec425e990a09b921
         Schema::defaultStringLength(191);
     }
     

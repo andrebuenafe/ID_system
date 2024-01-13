@@ -53,21 +53,9 @@
 </head>
 <body>
     <div id="app">
-<<<<<<< HEAD
-=======
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
->>>>>>> 0e7da61e8986a5b15ddd65ebec425e990a09b921
-
         <main class="container">
             @yield('content')
         </main>
-
     </div>
 
     {{-- bootstrap-js --}}
