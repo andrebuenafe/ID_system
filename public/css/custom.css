@@ -12,6 +12,10 @@
     justify-content: end;
 }
 
+.user-name{
+    color: #eee;
+}
+
 #canvas-container{
     display: flex;
     justify-content: center;
