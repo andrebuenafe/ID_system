@@ -23,5 +23,7 @@ class Student extends Model
         'img',
         'parents_name',
         'em_contact',
+        'bday',
+        'sy_started'
     ];
 }
