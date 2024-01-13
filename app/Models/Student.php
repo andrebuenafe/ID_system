@@ -24,6 +24,6 @@ class Student extends Model
         'parents_name',
         'em_contact',
         'bday',
-        'sy_started'
+        'sy_started',
     ];
 }

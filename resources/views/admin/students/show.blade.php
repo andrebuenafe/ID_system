@@ -25,8 +25,9 @@
                 </div>
                 <div id="course-color" style="background-color: {{$courseColor}}">
                     <div id="student-name">
-                        <h1 class="last-name text-uppercase">{{ $student->fname }}</h1>
-                        <h3 class="first-name text-uppercase">{{ $student->lname }}</h3>
+                        <h2 class="last-name text-uppercase">{{ $student->lname }}</h2>
+                        <h3 class="first-name text-uppercase">{{ $student->fname }}</h3>
+                  
                         <div class="extra-details">
                             <div class="dob">
                                 <p class="my-0">Date of Birth:</p>
@@ -59,14 +60,15 @@
                 <div class="validity-table ml-2">
                     <div class="row bg-secondary">
                         <div class="col-3">
-                            <div class="row bg-secondary">
-                                <div class="col-12 border pl-4 text-uppercase">
+                            <div class="row bg-secondary" style="display: flex;flex-direction: column;align-items: stretch;">
+                                <div class="border pl-4 text-uppercase" style="flex: 0 0 32px;display: flex;align-items: center;">
                                     Semester
                                 </div>
-                                <div class="col-12 border pl-4 text-uppercase">
+                                <div class="border pl-4 text-uppercase">
                                     First
                                 </div>
-                                <div class="col-12 border pl-4 text-uppercase">
+                                <div class="border pl-4 text-uppercase">
+                       
                                     Second
                                 </div>
                             </div>
@@ -85,11 +87,19 @@
                                 <div class="col-3 border" id="year-3" style="color: #858796">3</div>
                                 <div class="col-3 border" id="year-4" style="color: #858796">4</div>
                             </div>
+                            <div class="row bg-secondary">
+                                <div class="col-3 border" id="year-1" style="color: #858796">1</div>
+                                <div class="col-3 border" id="year-2" style="color: #858796">2</div>
+                                <div class="col-3 border" id="year-3" style="color: #858796">3</div>
+                                <div class="col-3 border" id="year-4" style="color: #858796">4</div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row back-side-blurb text-center">
-                    <div class="offset-2 col-10 text-dark px-3">
+
+                    <div class="offset-3 col-9 text-dark px-3">
+
                         <div class="certify-box mt-3 px-1">
                             This is to certify that the person whose picture and signature appear herein is a bonafide student of<br><strong>MLG College of Learning, Inc.</strong>
                         </div>
@@ -115,7 +125,9 @@
                             <h5 class="mb-0"><strong>{{$student->em_contact}}</strong></h5>
                         </div>
                         <div class="qr-scan-box bg-secondary text-uppercase text-white p-2 m-2">
-                            Please scan the QR Code at the Front for more validation & Contact Information.
+
+                            <small>Please scan the QR Code at the Front for more validation & Contact Information.</small>
+
                         </div>
                     </div>
                 </div>
@@ -128,4 +140,3 @@
  @include('admin.students._datatables-script')
 
 @endsection
-

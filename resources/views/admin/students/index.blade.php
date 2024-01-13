@@ -34,4 +34,3 @@
  @include('admin.students._datatables-script')
 
 @endsection
-
