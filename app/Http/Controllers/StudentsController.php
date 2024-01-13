@@ -22,11 +22,9 @@ class StudentsController extends Controller
     {
         if ($request->ajax()) {
             return $this->generateDatatables(Student::all());
-        }
-        $students = Student::all();
-        
+        }        
 
-        return view('admin.students.index', compact('students'));
+        return view('admin.students.index');
 
     }
 
@@ -72,7 +70,7 @@ class StudentsController extends Controller
                   $students_qr_filename = str_replace(' ','_',pathinfo($students_qr_WithExt, PATHINFO_FILENAME));
                   $students_qr_extension = $request->file('qr')->getClientOriginalExtension();
                   $students_qr = $students_qr_filename.'-'.$date.'.'.$students_qr_extension;
-                  $path_students_qr = $request->file('qr')->storeAs('qrs', $students_qr);
+                  $path_students_qr = $request->file('qr')->storeAs('public/qrs', $students_qr);
               } else {
                   $students_qr = 'No Data';
               }
@@ -86,7 +84,7 @@ class StudentsController extends Controller
                 $students_signature_filename = str_replace(' ','_',pathinfo($students_signature_WithExt, PATHINFO_FILENAME));
                 $students_signature_extension = $request->file('signature')->getClientOriginalExtension();
                 $students_signature = $students_signature_filename.'-'.$date.'.'.$students_signature_extension;
-                $path_students_signature = $request->file('signature')->storeAs('signatures', $students_signature);
+                $path_students_signature = $request->file('signature')->storeAs('public/signatures', $students_signature);
             } else {
                 $students_signature = 'No Data';
             }
@@ -99,7 +97,7 @@ class StudentsController extends Controller
                   $students_Img_filename = str_replace(' ','_',pathinfo($students_Img_WithExt, PATHINFO_FILENAME));
                   $students_Img_extension = $request->file('img')->getClientOriginalExtension();
                   $students_img = $students_Img_filename.'-'.$date.'.'.$students_Img_extension;
-                  $path_students_img = $request->file('img')->storeAs('images', $students_img);
+                  $path_students_img = $request->file('img')->storeAs('public/images', $students_img);
               } else {
                   $students_img = 'No Data';
               }
@@ -112,11 +110,11 @@ class StudentsController extends Controller
                 'fname' => $request->firstname,
                 'lname' => $request->lastname,
                 'address' => $request->address,
-                'qr' => $path_students_qr,
-                'signature' => $path_students_signature,
+                'qr' => $students_qr,
+                'signature' => $students_signature,
                 'school_id' => $request->school,
                 'course' => $request->course,
-                'img' => $path_students_img,
+                'img' => $students_img,
                 'parents_name' => $request->parentsname,
                 'em_contact' => $request->emcontact,
              
@@ -139,7 +137,10 @@ class StudentsController extends Controller
      */
     public function show($id)
     {
-        //
+        // dd($id);
+        $student = Student::where('id','=',$id)->first();
+
+        return view('admin.students.show',compact('student'));
     }
 
     /**
@@ -199,21 +200,21 @@ class StudentsController extends Controller
                                       <button data-id="' . $data->id . '" class="btn btn-sm btn-danger" onclick="confirmDelete(' . $data->id . ')">
                                         <i class="fas fa-trash"></i>
                                       </button>
-                                      <button data-id="' . $data->id . '" class="btn btn-sm btn-secondary" onclick="confirmDelete(' . $data->id . ')">
-                                        <i class="fas fa-solid fa-eye"></i>
-                                        </button>';
+                                      <a href="' . route("students.show", $data->id) . '" data-id="' . $data->id . '" class="btn btn-sm btn-secondary showStudent">
+                                        <i class="fas fa-print"></i>
+                                      </a>';
                 return $actionButtons;
             })
             ->addColumn('student-img', function($data){
-                $studentImg = '<img src="storage/'.$data->img.'" width="50%"/>';
+                $studentImg = '<img src="storage/images/'.$data->img.'" width="50%"/>';
                 return $studentImg;
             })
             ->addColumn('signature', function($data){
-                $signatureImg = '<img src="storage/'.$data->signature.'" width="50%"/>';
+                $signatureImg = '<img src="storage/signatures/'.$data->signature.'" width="50%"/>';
                 return $signatureImg;
             })
             ->addColumn('qr', function($data){
-                $qrImg = '<img src="storage/'.$data->qr.'" width="100%"/>';
+                $qrImg = '<img src="storage/qrs/'.$data->qr.'" width="100%"/>';
                 return $qrImg;
             })
             ->rawColumns(['action','student-img','signature','qr'])
