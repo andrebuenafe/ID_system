@@ -65,6 +65,16 @@ body{
     border-radius: 15px;
     box-shadow: -40px 0px #f5c400;
 }
+.input-pass{
+    position: absolute;
+    margin-top: 30px;
+    left: 24px;
+    padding-right: 0px;
+}
+
+.login-footer{
+    margin-top: 55px;
+}
 
 .remember-me-cont{
     margin-left: 20px;
