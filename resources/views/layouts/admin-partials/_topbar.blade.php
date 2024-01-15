@@ -18,7 +18,7 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Session::get('USERNAME') }}</span>
+                <span class="-2 d-none d-lg-inline text-gray-600 small">{{ Session::get('USERNAME') }}</span>
                 @if ( Session::get('USERIMG') == Null )
                     <img src="{{ asset('assets/images/user-placeholder.png') }}" alt="Profile Image Placeholder" class="img-profile rounded-circle">
                 @else
