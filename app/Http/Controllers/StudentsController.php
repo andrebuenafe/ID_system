@@ -168,13 +168,10 @@ class StudentsController extends Controller
      */
     public function edit($id)
     {
-        $student = Student::findOrFail($id); 
-        // $staff = User::where('role','=',2)->get();
-        
-        return view('admin.students.edit');
-
-
+        $student = Student::find($id);
+        return view('admin.students.edit', compact('student'));
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -281,8 +278,17 @@ class StudentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $student = Student::find($id);
+    
+        if (!$student) {
+            return response()->json(['message' => 'Student not found.'], 404);
+        }
+    
+        $student->delete();
+    
+        return response()->json(['message' => 'Student deleted successfully.']);
     }
+    
 
     public function generateDatatables($students)
     {
@@ -301,9 +307,9 @@ class StudentsController extends Controller
                 $actionButtons = '<a href="' . route("students.edit", $data->id) . '" data-id="' . $data->id . '" class="btn btn-sm btn-warning editUser">
                                         <i class="fas fa-edit"></i>
                                       </a>
-                                      <button data-id="' . $data->id . '" class="btn btn-sm btn-danger" onclick="confirmDelete(' . $data->id . ')">
+                                      <button class="btn btn-sm btn-danger" onclick="confirmDelete(' . $data->id . ')">
                                         <i class="fas fa-trash"></i>
-                                      </button>
+                                    </button>
                                       <a href="' . route("students.show", $data->id) . '" data-id="' . $data->id . '" class="btn btn-sm btn-secondary showStudent">
                                         <i class="fas fa-print"></i>
                                       </a>';

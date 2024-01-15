@@ -3,11 +3,11 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        New Student
+        Edit Student
     </div>
-    <form action="{{ route('students.update', ['students' => $students->id]) }}" id="students-save-form" method="POST" enctype="multipart/form-data">
-      
+    <form action="{{ route('students.update', ['student' => $student->id]) }}" id="students-save-form" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <div class="card-body">
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -105,7 +105,7 @@
             @endif
         </div>
         <div class="card-footer">
-            <button type="submit" id="save_btn" class="btn btn-success btn-sm">Save</button>
+            <button type="submit" id="save_btn" class="btn btn-success btn-sm">Update</button>
             <a href="{{ route('students.index') }}" class="btn btn-secondary btn-sm">Cancel</a>
         </div>
     </form>

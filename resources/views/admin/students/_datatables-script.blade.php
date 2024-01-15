@@ -20,3 +20,32 @@
         });
     });
 </script>
+
+{{-- Scripts Idk were to place --}}
+<script>
+    function confirmDelete(studentId) {
+        if (confirm('Are you sure you want to delete this student?')) {
+            deleteStudent(studentId);
+        }
+    }
+
+    function deleteStudent(studentId) {
+        // Assuming you have a route named 'students.destroy' for the delete action
+        var deleteUrl = "{{ url('students') }}" + '/' + studentId;
+
+        $.ajax({
+            url: deleteUrl,
+            type: 'DELETE',
+            data: {
+                "_token": "{{ csrf_token() }}",
+            },
+            success: function (data) {
+                // Reload the page after successful deletion
+                location.reload();
+            },
+            error: function (data) {
+                console.error('Error:', data);
+            }
+        });
+    }
+</script>
