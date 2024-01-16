@@ -31,4 +31,11 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
+    <li class="nav-item {{ Str::startsWith(request()->path(), 'users') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('students.index') }}">
+            <i class="fas fa-users"></i>
+            <span>Students</span>
+        </a>
+    </li>
+
 </ul>

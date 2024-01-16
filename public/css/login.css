@@ -1,0 +1,116 @@
+body{
+    background-color: #1f1f1f;
+    width: 100%;
+    height: 500px;
+    color: white;
+    font-family: montserrat;
+}
+
+.login-container{
+    width: 420px;
+    height: 600px;
+    background-color: #102a71;
+    position: relative;
+    top: 50px;
+    left: 23em;
+    border: 2px solid #102a71;
+    border-radius: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 20px 20px #f5c400;
+}
+
+#cdl-logo{
+    width: 300px;
+    height: 150px;
+}
+
+.header-text{
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.email-contianer{
+    margin: 30px
+}
+
+.fa-envelope{
+    font-size: 25px;
+    position: relative;
+    top: 4px;
+    left: 5px;
+    margin-right: 6px;
+    color: #1f1f1f;
+}
+.fa-lock{
+    font-size: 23px;
+    position: relative;
+    top: 3px;
+    left: 5px;
+    margin-right: 6px;
+    color: #1f1f1f;
+}
+
+.email-contianer #email-label,
+.email-contianer #password-label{
+    font-weight: 700;
+}
+
+#email-input,
+#password-input{
+    padding: 8px;
+    width: 20em;
+    border: #f5c400 solid 5px;
+    border-radius: 15px;
+    box-shadow: -40px 0px #f5c400;
+}
+.input-pass{
+    position: absolute;
+    margin-top: 30px;
+    left: 24px;
+    padding-right: 0px;
+}
+
+.login-footer{
+    margin-top: 55px;
+}
+
+.remember-me-cont{
+    margin-left: 20px;
+}
+
+.form-check-input:active{
+    color: #1f1f1f;
+}
+
+.btn-bg{
+    background-color: #f5c400;
+    color: #1f1f1f;
+    font-weight: 700;
+    width: 150px;
+    position: absolute;
+    left: 120px;
+}
+
+.fa-lock{
+    font-size: 23px;
+}
+
+.btn-bg:hover{
+    background-color: #1f1f1f;
+    color: #f5c400;
+}
+
+.btn-forget-pass{
+    color: #fff;
+    position: absolute;
+    left: 96px;
+    top: 40px;
+    font-size: 12px;
+    width: 200px
+}
+
+.btn-forget-pass:hover{
+    color: #f5c400;
+}

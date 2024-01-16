@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StudentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,11 +36,13 @@ Route::group(['middleware' => 'auth'], function () {
     // User routes
     Route::resource('/users', UsersController::class);
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+    
+    Route::delete('/users/{user}', 'App\Http\Controllers\UsersController@destroy')->name('users.destroy');
 
 
 
+    // Students routes
+    Route::resource('/students', StudentsController::class);
 
 
 });
-
-

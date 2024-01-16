@@ -16,11 +16,12 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -37,9 +38,12 @@
 
     <link rel="stylesheet" href="sweetalert2.min.css">
 
-       <!-- Dropify CSS-->
+   <!-- Dropify CSS-->
 
-       <link rel="stylesheet" href="{{ asset('css/dropify.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dropify.css') }}">
+
+    {{-- Custom CSS --}}
+     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
      <!-- jQuery Scripts -->
 
@@ -49,16 +53,13 @@
 </head>
 <body>
     <div id="app">
-
-        <main class="">
+        <main class="container">
             @yield('content')
         </main>
-
     </div>
 
     {{-- bootstrap-js --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-
-
+    <script src="https://kit.fontawesome.com/4be650c4fe.js" crossorigin="anonymous"></script>
 </body>
 </html>

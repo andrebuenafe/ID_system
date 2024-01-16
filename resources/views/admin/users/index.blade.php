@@ -26,6 +26,13 @@
             </table>
         </div>
     </div>
+
+    <!-- Display success message -->
+    @if(session('success'))
+        <div class="alert alert-success mt-1">
+        {{ session('success') }}
+  @endif
+
  @include('admin.users._datatables-script')
 
 @endsection
