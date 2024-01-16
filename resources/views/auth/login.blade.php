@@ -42,32 +42,34 @@
                 </div>
             </div>
             
-            <div class="row mb-3">
-                <div class="remember-me-cont">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                        <label class="form-check-label" for="remember">
-                            {{ __('Remember Me') }}
-                        </label>
+            <div class="login-footer">
+                <div class="row mb-3">
+                    <div class="remember-me-cont">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+    
+                            <label class="form-check-label" for="remember">
+                                {{ __('Remember Me') }}
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-
-            <div class="row mb-0">
-                <div class="col-md-8 btn-login">
-                    
-                    <button type="submit" class="btn btn-bg">
-                        <i class="fa-solid fa-key"></i>
-                        Login
-                    </button>
-
-                    @if (Route::has('password.request'))
-                        <a class="btn btn-forget-pass" href="{{ route('password.request') }}">
-                            Forgot Your Password?
-                        </a>
-                    @endif 
+    
+    
+                <div class="row mb-0">
+                    <div class="col-md-8 btn-login">
+                        
+                        <button type="submit" class="btn btn-bg">
+                            <i class="fa-solid fa-key"></i>
+                            Login
+                        </button>
+    
+                        @if (Route::has('password.request'))
+                            <a class="btn btn-forget-pass" href="{{ route('password.request') }}">
+                                Forgot Your Password?
+                            </a>
+                        @endif 
+                    </div>
                 </div>
             </div>
 
