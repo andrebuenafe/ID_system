@@ -5,7 +5,7 @@
     <div class="card-header">
         New Student
     </div>
-    <form action="{{ route('students.store') }}" id="students-save-form" method="POST" enctype="multipart/form-data">        
+    <form action="{{ route('students.store') }}" id="students-save-form" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
             <div class="form-row">
@@ -27,7 +27,7 @@
                         value="{{ old('address') }}">
                 </div>
 
-               
+
 
                 <div class="form-group col-md-6">
                     <label for="school_id">School ID</label>
@@ -74,27 +74,27 @@
                     @if(isset($students) && $students->img)
                     <img src="{{ asset('storage/' . $students->img) }}" alt="Student Image" style="max-width: 100%">
                 @endif
-                </div> 
-                
+                </div>
+
                  <div class="form-group col-md-6">
                     <label for="signature">Student Signature</label>
                     <input type="file" class="form-control" id="signature" placeholder="Last Name" name="signature">
 
                     @if(isset($students) && $students->signature)
                     <img src="{{ asset('storage/' . $students->signature) }}" alt="Signature Image" style="width: 100%">
-                @endif                   
-                </div> 
+                @endif
+                </div>
                 <div class="form-group col-md-6">
                     <label for="qr">QR Code</label>
                     <input type="file" class="form-control" id="qr" placeholder="QR Code" name="qr">
 
                     @if(isset($students) && $students->qr)
                     <img src="{{ asset('storage/' . $students->qr) }}" alt="QR Image" style="max-width: 100%">
-                @endif                
+                @endif
                 </div>
-                
+
             </div>
-            
+
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul class="p-0 m-0">

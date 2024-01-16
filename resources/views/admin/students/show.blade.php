@@ -27,7 +27,7 @@
                     <div id="student-name">
                         <h2 class="last-name text-uppercase">{{ $student->lname }}</h2>
                         <h3 class="first-name text-uppercase">{{ $student->fname }}</h3>
-                  
+
                         <div class="extra-details">
                             <div class="dob">
                                 <p class="my-0">Date of Birth:</p>
@@ -68,7 +68,7 @@
                                     First
                                 </div>
                                 <div class="border pl-4 text-uppercase">
-                       
+
                                     Second
                                 </div>
                             </div>

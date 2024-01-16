@@ -1,5 +1,5 @@
 <nav class="sb-topnav navbar navbar-expand bg-primary mb-3">
-    
+
     <!-- Navbar-->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Left Side Of Navbar -->
