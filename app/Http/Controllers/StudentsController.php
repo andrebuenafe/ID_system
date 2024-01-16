@@ -168,10 +168,10 @@ class StudentsController extends Controller
      */
     public function edit($id)
     {
-        $student = Student::findOrFail($id);
+        $students = Student::findOrFail($id);
         // $staff = User::where('role','=',2)->get();
 
-        return view('admin.students.edit');
+        return view('admin.students.edit')->with(['students' => $students,]);
 
 
     }
@@ -201,6 +201,7 @@ class StudentsController extends Controller
                 'sy_started' => 'required|string|max:255',
 
             ]);
+
 
               // file upload QRS
               $now = new \DateTime('NOW');
@@ -242,10 +243,8 @@ class StudentsController extends Controller
               } else {
                   $students_img = 'No Data';
               }
-            // $qrPath = $request->file('qr')->store('public/qrs');
-            // $signaturePath = $request->file('signature')->store('public/signatures');
-            // $imgPath = $request->file('img')->store('public/images');
 
+            $student = Student::findOrFail($id);
 
             $student->update([
                 'fname' => $request->firstname,
@@ -260,14 +259,12 @@ class StudentsController extends Controller
                 'em_contact' => $request->emcontact,
                 'bday' => $request->bday,
                 'sy_started' => $request->sy_started,
-
-
             ]);
 
-            $students = Student::all();
-            $message = "Students Created Successfully!";
+            $student = Student::all();
+            $message = "Students Updated Successfully!";
 
-            return view('admin.students.index')->with(['students'=>$students, 'success'=>$message]);
+            return view('admin.students.index')->with(['students'=>$student, 'success'=>$message]);
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
         }
