@@ -281,11 +281,21 @@ class StudentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $student = Student::findOrFail($id);
+
+        $student->destroy($id);
+
+        if($student){
+            return response()->json(['message' => 'Student deleted successfully']);
+        } else {
+            return response()->json(['error' => 'Student failed!']);
+        }
     }
 
     public function generateDatatables($students)
     {
+        try {
+
         return DataTables::of($students)
             ->addIndexColumn()
             // ->addColumn('role', function ($data) {
@@ -301,9 +311,9 @@ class StudentsController extends Controller
                 $actionButtons = '<a href="' . route("students.edit", $data->id) . '" data-id="' . $data->id . '" class="btn btn-sm btn-warning editUser">
                                         <i class="fas fa-edit"></i>
                                       </a>
-                                      <button data-id="' . $data->id . '" class="btn btn-sm btn-danger" onclick="confirmDelete(' . $data->id . ')">
-                                        <i class="fas fa-trash"></i>
-                                      </button>
+                                      <button data-id="'.$data->id.'" class="btn btn-sm btn-danger" onclick="confirmDeleteStudent('.$data->id.')">
+                                    <i class="fas fa-trash"></i>
+                                    </button>
                                       <a href="' . route("students.show", $data->id) . '" data-id="' . $data->id . '" class="btn btn-sm btn-secondary showStudent">
                                         <i class="fas fa-print"></i>
                                       </a>';
@@ -311,5 +321,12 @@ class StudentsController extends Controller
             })
             ->rawColumns(['action'])
             ->make(true);
+
+        } catch (\Exception $e) {
+            // Log the exception for debugging
+            error_log("Error in DataTables: " . $e->getMessage());
+            // Optionally, return a response with a useful message
+            return response()->json(['error' => 'Internal Server Error'], 500);
+        }
     }
 }
