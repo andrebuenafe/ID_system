@@ -1,10 +1,11 @@
 @extends('layouts.admin')
 
 @section('content')
+
 <!-- Project Card Example -->
 <div class="card shadow mb-4" id="dashboard-page">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Welcome to your Duty Diary Dashboard</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Welcome to your ID System Dashboard</h6>
     </div>
     <div class="card-body">
         <h4 class="small font-weight-bold">Server Migration <span
@@ -38,6 +39,17 @@
                 aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            // Animate progress bars on page load
+            $('.progress-bar').each(function() {
+                var progressValue = $(this).attr('aria-valuenow');
+                $(this).animate({ width: progressValue + '%' }, 2000); // Animation duration in milliseconds
+            });
+        });
+        </script>
 </div>
+
 @endsection
 

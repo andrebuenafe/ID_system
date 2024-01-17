@@ -28,7 +28,7 @@
     {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" integrity="sha512-mNqZ+3hD41PWN4zQ0sIuvPdJge1Q4u8NEJ/3OP+SZlO+q+wgt6Uq8sKlJ4yUJh3uoI5Bo2zUqatjO4OMDfhC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
- 
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
@@ -49,6 +49,12 @@
 
     <!-- App Script -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+
+     <!-- Axios Script -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+     <!-- SweetAlert Script -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </head>
 <body id="page-top">

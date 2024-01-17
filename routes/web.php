@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     // User routes
     Route::resource('/users', UsersController::class);
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
-    
+
     Route::delete('/users/{user}', 'App\Http\Controllers\UsersController@destroy')->name('users.destroy');
 
 

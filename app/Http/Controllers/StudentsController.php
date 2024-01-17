@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class StudentsController extends Controller
 {
@@ -22,7 +23,7 @@ class StudentsController extends Controller
     {
         if ($request->ajax()) {
             return $this->generateDatatables(Student::all());
-        }        
+        }
 
         return view('admin.students.index');
 
@@ -53,20 +54,21 @@ class StudentsController extends Controller
                 'address' => 'required|string|max:255',
                 'qr' => 'required|file|max:9024|mimes:jpeg,png',
                 'signature' => 'required|file|max:9024|mimes:jpeg,png',
-                'school' => 'required|string|max:255',
+                'school_id' => 'required|string|max:255|unique:students',
                 'course' => 'required|string|max:255',
+                'new_course' => 'sometimes|required_if:course,addNewCourse|string|max:255',
                 'img' => 'required|file|max:9024|mimes:jpeg,png',
                 'parentsname' => 'required|string|max:255',
                 'emcontact' => 'required|string|max:255',
                 'bday' => 'required|string|max:255',
                 'sy_started' => 'required|string|max:255',
-                
+
             ]);
 
               // file upload QRS
               $now = new \DateTime('NOW');
               $date = $now->format('m-d-Y_H.i.s');
-  
+
               if($request->has('qr')){
                   $students_qr_WithExt = $request->file('qr')->getClientOriginalName();
                   $students_qr_filename = str_replace(' ','_',pathinfo($students_qr_WithExt, PATHINFO_FILENAME));
@@ -93,7 +95,7 @@ class StudentsController extends Controller
               // file upload IMG
               $now = new \DateTime('NOW');
               $date = $now->format('m-d-Y_H.i.s');
-                
+
               if($request->has('img')){
                   $students_Img_WithExt = $request->file('img')->getClientOriginalName();
                   $students_Img_filename = str_replace(' ','_',pathinfo($students_Img_WithExt, PATHINFO_FILENAME));
@@ -103,28 +105,26 @@ class StudentsController extends Controller
               } else {
                   $students_img = 'No Data';
               }
-            // $qrPath = $request->file('qr')->store('public/qrs');
-            // $signaturePath = $request->file('signature')->store('public/signatures');
-            // $imgPath = $request->file('img')->store('public/images');
-    
-    
+
+
+
             $student = Student::create([
                 'fname' => $request->firstname,
                 'lname' => $request->lastname,
                 'address' => $request->address,
                 'qr' => $students_qr,
                 'signature' => $students_signature,
-                'school_id' => $request->school,
-                'course' => $request->course,
+                'school_id' => $request->school_id,
+                'course' => $request->course === 'addNewCourse' ? $request->new_course : $request->course,
                 'img' => $students_img,
                 'parents_name' => $request->parentsname,
                 'em_contact' => $request->emcontact,
                 'bday' => $request->bday,
                 'sy_started' => $request->sy_started,
 
-             
+
             ]);
-            
+
             $students = Student::all();
             $message = "Students Created Successfully!";
 
@@ -153,6 +153,12 @@ class StudentsController extends Controller
             $courseColor = '#990099';
         }else if($student->course == "BSED-Math"){
             $courseColor = '#009900';
+        }else if($student->course == "BSBA"){
+            $courseColor = '#ffff00';
+        }else if($student->course == "MARINE"){
+            $courseColor = '#993333';
+        }else if($student->course == "HM"){
+            $courseColor = '#ddddbb';
         }
         return view('admin.students.show',[
             'student' => $student,
@@ -170,8 +176,8 @@ class StudentsController extends Controller
     {
         $students = Student::findOrFail($id); 
         // $staff = User::where('role','=',2)->get();
-        
-        return view('admin.students.edit');
+
+        return view('admin.students.edit')->with(['students' => $students,]);
 
 
     }
@@ -185,6 +191,7 @@ class StudentsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $student = Student::findOrFail($id);
         try {
             $validatedData = $request->validate([
                 'firstname' => 'required|string|max:255',
@@ -192,20 +199,24 @@ class StudentsController extends Controller
                 'address' => 'required|string|max:255',
                 'qr' => 'required|file|max:9024|mimes:jpeg,png',
                 'signature' => 'required|file|max:9024|mimes:jpeg,png',
-                'school' => 'required|string|max:255',
+                'school_id' => ['required','string','max:255',
+                    Rule::unique('students')->ignore($student->id),
+                ],
                 'course' => 'required|string|max:255',
+                'new_course' => 'sometimes|required_if:course,addNewCourse|string|max:255',
                 'img' => 'required|file|max:9024|mimes:jpeg,png',
                 'parentsname' => 'required|string|max:255',
                 'emcontact' => 'required|string|max:255',
                 'bday' => 'required|string|max:255',
                 'sy_started' => 'required|string|max:255',
-                
+
             ]);
+
 
               // file upload QRS
               $now = new \DateTime('NOW');
               $date = $now->format('m-d-Y_H.i.s');
-  
+
               if($request->has('qr')){
                   $students_qr_WithExt = $request->file('qr')->getClientOriginalName();
                   $students_qr_filename = str_replace(' ','_',pathinfo($students_qr_WithExt, PATHINFO_FILENAME));
@@ -232,7 +243,7 @@ class StudentsController extends Controller
               // file upload IMG
               $now = new \DateTime('NOW');
               $date = $now->format('m-d-Y_H.i.s');
-                
+
               if($request->has('img')){
                   $students_Img_WithExt = $request->file('img')->getClientOriginalName();
                   $students_Img_filename = str_replace(' ','_',pathinfo($students_Img_WithExt, PATHINFO_FILENAME));
@@ -242,32 +253,28 @@ class StudentsController extends Controller
               } else {
                   $students_img = 'No Data';
               }
-            // $qrPath = $request->file('qr')->store('public/qrs');
-            // $signaturePath = $request->file('signature')->store('public/signatures');
-            // $imgPath = $request->file('img')->store('public/images');
-    
-    
-            $student = Student::create([
+
+            $student = Student::findOrFail($id);
+
+            $student->update([
                 'fname' => $request->firstname,
                 'lname' => $request->lastname,
                 'address' => $request->address,
                 'qr' => $students_qr,
                 'signature' => $students_signature,
-                'school_id' => $request->school,
-                'course' => $request->course,
+                'school_id' => $request->school_id,
+                'course' => $request->course === 'addNewCourse' ? $request->new_course : $request->course,
                 'img' => $students_img,
                 'parents_name' => $request->parentsname,
                 'em_contact' => $request->emcontact,
                 'bday' => $request->bday,
                 'sy_started' => $request->sy_started,
-
-             
             ]);
-            
-            $students = Student::all();
-            $message = "Students Created Successfully!";
 
-            return view('admin.students.index')->with(['students'=>$students, 'success'=>$message]);
+            $student = Student::all();
+            $message = "Students Updated Successfully!";
+
+            return view('admin.students.index')->with(['students'=>$student, 'success'=>$message]);
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
         }
@@ -281,11 +288,21 @@ class StudentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $student = Student::findOrFail($id);
+
+        $student->destroy($id);
+
+        if($student){
+            return response()->json(['message' => 'Student deleted successfully']);
+        } else {
+            return response()->json(['error' => 'Student failed!']);
+        }
     }
 
     public function generateDatatables($students)
     {
+        try {
+
         return DataTables::of($students)
             ->addIndexColumn()
             // ->addColumn('role', function ($data) {
@@ -301,9 +318,9 @@ class StudentsController extends Controller
                 $actionButtons = '<a href="' . route("students.edit", $data->id) . '" data-id="' . $data->id . '" class="btn btn-sm btn-warning editUser">
                                         <i class="fas fa-edit"></i>
                                       </a>
-                                      <button data-id="' . $data->id . '" class="btn btn-sm btn-danger" onclick="confirmDelete(' . $data->id . ')">
-                                        <i class="fas fa-trash"></i>
-                                      </button>
+                                      <button data-id="'.$data->id.'" class="btn btn-sm btn-danger" onclick="confirmDeleteStudent('.$data->id.')">
+                                    <i class="fas fa-trash"></i>
+                                    </button>
                                       <a href="' . route("students.show", $data->id) . '" data-id="' . $data->id . '" class="btn btn-sm btn-secondary showStudent">
                                         <i class="fas fa-print"></i>
                                       </a>';
@@ -311,5 +328,12 @@ class StudentsController extends Controller
             })
             ->rawColumns(['action'])
             ->make(true);
+
+        } catch (\Exception $e) {
+            // Log the exception for debugging
+            error_log("Error in DataTables: " . $e->getMessage());
+            // Optionally, return a response with a useful message
+            return response()->json(['error' => 'Internal Server Error'], 500);
+        }
     }
 }
