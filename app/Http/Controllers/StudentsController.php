@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class StudentsController extends Controller
 {
@@ -53,8 +54,9 @@ class StudentsController extends Controller
                 'address' => 'required|string|max:255',
                 'qr' => 'required|file|max:9024|mimes:jpeg,png',
                 'signature' => 'required|file|max:9024|mimes:jpeg,png',
-                'school' => 'required|string|max:255',
+                'school_id' => 'required|string|max:255|unique:students',
                 'course' => 'required|string|max:255',
+                'new_course' => 'sometimes|required_if:course,addNewCourse|string|max:255',
                 'img' => 'required|file|max:9024|mimes:jpeg,png',
                 'parentsname' => 'required|string|max:255',
                 'emcontact' => 'required|string|max:255',
@@ -103,9 +105,7 @@ class StudentsController extends Controller
               } else {
                   $students_img = 'No Data';
               }
-            // $qrPath = $request->file('qr')->store('public/qrs');
-            // $signaturePath = $request->file('signature')->store('public/signatures');
-            // $imgPath = $request->file('img')->store('public/images');
+
 
 
             $student = Student::create([
@@ -114,8 +114,8 @@ class StudentsController extends Controller
                 'address' => $request->address,
                 'qr' => $students_qr,
                 'signature' => $students_signature,
-                'school_id' => $request->school,
-                'course' => $request->course,
+                'school_id' => $request->school_id,
+                'course' => $request->course === 'addNewCourse' ? $request->new_course : $request->course,
                 'img' => $students_img,
                 'parents_name' => $request->parentsname,
                 'em_contact' => $request->emcontact,
@@ -153,6 +153,12 @@ class StudentsController extends Controller
             $courseColor = '#990099';
         }else if($student->course == "BSED-Math"){
             $courseColor = '#009900';
+        }else if($student->course == "BSBA"){
+            $courseColor = '#ffff00';
+        }else if($student->course == "MARINE"){
+            $courseColor = '#993333';
+        }else if($student->course == "HM"){
+            $courseColor = '#ddddbb';
         }
         return view('admin.students.show',[
             'student' => $student,
@@ -185,6 +191,7 @@ class StudentsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $student = Student::findOrFail($id);
         try {
             $validatedData = $request->validate([
                 'firstname' => 'required|string|max:255',
@@ -192,8 +199,11 @@ class StudentsController extends Controller
                 'address' => 'required|string|max:255',
                 'qr' => 'required|file|max:9024|mimes:jpeg,png',
                 'signature' => 'required|file|max:9024|mimes:jpeg,png',
-                'school' => 'required|string|max:255',
+                'school_id' => ['required','string','max:255',
+                    Rule::unique('students')->ignore($student->id),
+                ],
                 'course' => 'required|string|max:255',
+                'new_course' => 'sometimes|required_if:course,addNewCourse|string|max:255',
                 'img' => 'required|file|max:9024|mimes:jpeg,png',
                 'parentsname' => 'required|string|max:255',
                 'emcontact' => 'required|string|max:255',
@@ -252,8 +262,8 @@ class StudentsController extends Controller
                 'address' => $request->address,
                 'qr' => $students_qr,
                 'signature' => $students_signature,
-                'school_id' => $request->school,
-                'course' => $request->course,
+                'school_id' => $request->school_id,
+                'course' => $request->course === 'addNewCourse' ? $request->new_course : $request->course,
                 'img' => $students_img,
                 'parents_name' => $request->parentsname,
                 'em_contact' => $request->emcontact,

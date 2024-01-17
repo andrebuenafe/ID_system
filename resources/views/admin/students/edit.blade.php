@@ -31,7 +31,7 @@
 
                 <div class="form-group col-md-6">
                     <label for="school_id">School ID</label>
-                    <input type="text" class="form-control" id="school" placeholder="School ID" name="school"
+                    <input type="text" class="form-control" id="school_id" placeholder="School ID" name="school_id"
                         required value="{{ $students->school_id }}">
                 </div>
 
@@ -43,7 +43,9 @@
                         <option value="BEED">BEED</option>
                         <option value="BSED-Math">BSED-MATH</option>
                         <option value="BSED-SS">BSED-SS</option>
+                        <option value="addNewCourse">Add New Course</option>
                     </select>
+                    <input type="text" name="new_course" id="new_course" class="form-control mt-2 text-uppercase" placeholder="Enter New Course" style="display: none;">
                 </div>
 
                 <div class="form-group col-md-6">
@@ -107,4 +109,17 @@
         </div>
     </form>
 </div>
+
+
+<script>
+    $(document).ready(function(){
+        $("#course").change(function(){
+            if($(this).val() === "addNewCourse"){
+                $("#new_course").show();
+            } else {
+                $("#new_course").hide();
+            }
+        });
+    });
+</script>
 @endsection
