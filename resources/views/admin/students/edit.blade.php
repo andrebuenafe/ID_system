@@ -3,7 +3,10 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        Edit Student
+        <h3 class="float-start">EDITING STUDENT</h3>
+        <a href="{{ route('students.index') }}" class="float-end">
+            <button type="button" class="btn btn-primary">Back</button>
+        </a>
     </div>
     <form action="{{ route('students.update', $students->id) }}" id="students-save-form" method="POST" enctype="multipart/form-data">
 
@@ -38,7 +41,7 @@
                 <div class="form-group col-md-6">
                     <label for="course">Course</label>
                     <select name="course" id="course" class="form-control">
-                        <option value="" selected disabled>Select a Course</option>
+                        <option value="" selected disabled>{{$students->course}}</option>
                         <option value="BSIT">BSIT</option>
                         <option value="BEED">BEED</option>
                         <option value="BSED-Math">BSED-MATH</option>
@@ -72,20 +75,18 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="img">Student Image</label>
-                    <input type="file" class="form-control" id="img" placeholder="Image" name="img">
-
-
+                    <input type="file" class="form-control" id="img" name="img">
                 </div>
 
                  <div class="form-group col-md-6">
                     <label for="signature">Student Signature</label>
-                    <input type="file" class="form-control" id="signature" placeholder="Last Name" name="signature">
+                    <input type="file" class="form-control" id="signature" name="signature">
 
 
                 </div>
                 <div class="form-group col-md-6">
                     <label for="qr">QR Code</label>
-                    <input type="file" class="form-control" id="qr" placeholder="QR Code" name="qr">
+                    <input type="file" class="form-control" id="qr" name="qr">
 
 
                 </div>
@@ -102,12 +103,12 @@
                 </div>
             @endif
         </div>
-
         <div class="card-footer">
             <button type="submit" id="save_btn" class="btn btn-success btn-sm">Save</button>
             <a href="{{ route('students.index') }}" class="btn btn-secondary btn-sm">Cancel</a>
         </div>
     </form>
+
 </div>
 
 

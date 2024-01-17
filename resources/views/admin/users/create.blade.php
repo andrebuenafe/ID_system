@@ -3,7 +3,10 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        New User
+        <h3 class="float-start">EDITING STUDENT</h3>
+        <a href="{{ route('users.index') }}" class="float-end">
+            <button type="button" class="btn btn-primary">Back</button>
+        </a>
     </div>
     <form action="{{ route('users.store') }}" id="users-save-form" method="POST">
         @csrf

@@ -3,12 +3,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <div class="row">
-            <div class="col-md-6 col-12">
-                <i class="fas fa-solid fa-users"></i>
-                Students
-            </div>
-        </div>
+      <h3 class="float-start">STUDENT</h3>
     </div>
         <div class="card-body p-1">
           @if (isset($success))

@@ -10,6 +10,18 @@
     justify-content: end;
 }
 
+body{
+    font-family: Montserrat;
+}
+
+.card-header h3{
+    font-weight: 700;
+}
+
+.dataTables_length{
+    float: left;
+}
+
 .user-name{
     color: #eee;
 }
