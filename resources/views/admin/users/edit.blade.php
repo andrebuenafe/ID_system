@@ -3,12 +3,10 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <div class="row">
-                <div class="col-md-6 col-12">
-                    <i class="fas fa-solid fa-users"></i>
-                    Edit User
-                </div>
-            </div>
+            <h3 class="float-start">EDITING STUDENT</h3>
+            <a href="{{ route('users.index') }}" class="float-end">
+                <button type="button" class="btn btn-primary">Back</button>
+            </a>
         </div>
         <div class="card-body">
             <form action="{{ route('users.update', $user->id) }}" method="POST">

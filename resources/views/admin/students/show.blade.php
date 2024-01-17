@@ -3,12 +3,10 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <div class="row">
-            <div class="col-md-6 col-12">
-                <i class="fas fa-solid fa-users"></i>
-                Print Preview
-            </div>
-        </div>
+        <h3 class="float-start">PREVIEW ID</h3>
+        <a href="{{ route('students.index') }}" class="float-end">
+            <button type="button" class="btn btn-primary">Back</button>
+        </a>
     </div>
         <div class="card-body p-3" id="canvas-container">
             <div class="id-card-canvas front-side" style="background: url('{{asset("storage/images/")}}{{"/".$student->img}}')">
