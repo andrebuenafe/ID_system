@@ -168,7 +168,7 @@ class StudentsController extends Controller
      */
     public function edit($id)
     {
-        $student = Student::findOrFail($id); 
+        $students = Student::findOrFail($id); 
         // $staff = User::where('role','=',2)->get();
         
         return view('admin.students.edit');
