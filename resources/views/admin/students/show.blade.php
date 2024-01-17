@@ -31,7 +31,7 @@
                         <div class="extra-details">
                             <div class="dob">
                                 <p class="my-0">Date of Birth:</p>
-                                <h4>{{$student->bday}}</h4>
+                                <h4>{{ \Carbon\Carbon::parse($student->bday)->format('m/d/Y') }}</h4>
                             </div>
                             <div class="address">
                                 <p>{{ $student->address }}</p>
@@ -121,7 +121,7 @@
                         </div>
                         <div class="emergency-contact mt-2">
                             <strong>In case of emergency, please contact</strong>
-                            <h5 class="mb-0"><strong>{{$student->parents_name}}</strong></h5>
+                            <h5 class="mb-0 text-uppercase"><strong>{{$student->parents_name}}</strong></h5>
                             <h5 class="mb-0"><strong>{{$student->em_contact}}</strong></h5>
                         </div>
                         <div class="qr-scan-box bg-secondary text-uppercase text-white p-2 m-2">

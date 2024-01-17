@@ -32,7 +32,7 @@ class UsersController extends Controller
     try {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'role' => 'required|numeric',
             'temp_password' => 'required|min:8',
         ]);
@@ -68,7 +68,7 @@ public function edit($id)
         try {
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
-                'email' => 'required|email',
+                'email' => 'required|email|unique:users',
                 'role' => 'required|numeric',
             ]);
 
@@ -90,7 +90,7 @@ public function edit($id)
 public function destroy(User $user)
 {
     $user->delete();
-    
+
     return redirect()->route('users.index')->with('success', 'User deleted successfully');
 }
 
@@ -110,17 +110,17 @@ public function generateDatatables($users)
         })
         ->addColumn('action', function ($data) {
             $actionButtons = '<a href="' . route("users.edit", $data->id) . '" data-id="' . $data->id . '" class="btn btn-sm btn-warning editUser">
-                                    <i class="fas fa-edit"></i> 
+                                    <i class="fas fa-edit"></i>
                                 </a>
                                 <form action="' . route("users.destroy", $data->id) . '" method="POST" class="d-inline">
                                 ' . csrf_field() . '
                                 ' . method_field('DELETE') . '
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="confirmDelete(' . $data->id . ')">
-                                    <i class="fas fa-trash"></i> 
+                                    <i class="fas fa-trash"></i>
                                 </button>
                             </form>';
-                            
-                            
+
+
             return $actionButtons;
         })
         ->rawColumns(['action', 'role'])

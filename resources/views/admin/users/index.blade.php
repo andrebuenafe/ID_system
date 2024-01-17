@@ -9,7 +9,13 @@
                 Users
             </div>
         </div>
+         <!-- Display success message -->
+    @if(session('success'))
+    <div class="alert alert-success mt-1">
+    {{ session('success') }}
+@endif
     </div>
+
         <div class="card-body p-1">
             <table class="table table-sm table-hover mb-0" id="users-table">
               <thead>
@@ -27,11 +33,7 @@
         </div>
     </div>
 
-    <!-- Display success message -->
-    @if(session('success'))
-        <div class="alert alert-success mt-1">
-        {{ session('success') }}
-  @endif
+
 
  @include('admin.users._datatables-script')
 
