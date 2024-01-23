@@ -11,6 +11,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class StudentsController extends Controller
 {
@@ -62,8 +63,13 @@ class StudentsController extends Controller
                 'emcontact' => 'required|string|max:255',
                 'bday' => 'required|string|max:255',
                 'sy_started' => 'required|string|max:255',
+                'course_color' => 'required|string|max:255',
 
             ]);
+
+            // Generate a random color if not provided
+            $courseColor = $request->selected_course_color ?: $this->generateRandomColor();
+
 
               // file upload QRS
               $now = new \DateTime('NOW');
@@ -121,6 +127,7 @@ class StudentsController extends Controller
                 'em_contact' => $request->emcontact,
                 'bday' => $request->bday,
                 'sy_started' => $request->sy_started,
+                'course_color' => $courseColor,
 
 
             ]);
@@ -132,6 +139,12 @@ class StudentsController extends Controller
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
         }
+    }
+
+    private function generateRandomColor()
+    {
+        // Generate a random hexadecimal color code
+        return '#' . Str::random(6);
     }
 
     /**
@@ -209,9 +222,12 @@ class StudentsController extends Controller
                 'emcontact' => 'required|string|max:255',
                 'bday' => 'required|string|max:255',
                 'sy_started' => 'required|string|max:255',
+                'course_color' => 'required|string|max:255',
 
             ]);
 
+            // Generate a random color if not provided
+            $courseColor = $request->selected_course_color ?: $this->generateRandomColor();
 
               // file upload QRS
               $now = new \DateTime('NOW');
@@ -269,6 +285,7 @@ class StudentsController extends Controller
                 'em_contact' => $request->emcontact,
                 'bday' => $request->bday,
                 'sy_started' => $request->sy_started,
+                'course_color' => $courseColor,
             ]);
 
             $student = Student::all();

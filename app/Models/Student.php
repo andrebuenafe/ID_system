@@ -25,5 +25,6 @@ class Student extends Model
         'em_contact',
         'bday',
         'sy_started',
+        'course_color'
     ];
 }
