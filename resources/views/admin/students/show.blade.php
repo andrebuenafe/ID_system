@@ -21,10 +21,10 @@
                 <div id="signature">
                     <img src="{{asset('storage/signatures/')}}{{"/".$student->signature}}" alt="" width="50%">
                 </div>
-                <div id="course-color" style="background-color: {{$courseColor}}">
+                <div id="course-color" style="background-color: {{ $student->course_color }}">
                     <div id="student-name">
                         <h2 class="last-name text-uppercase">{{ $student->lname }}</h2>
-                        <h3 class="first-name text-uppercase">{{ $student->fname }}</h3>
+                        <h3 id="Text-resize"class="first-name text-uppercase">{{ $student->fname }}</h3>
 
                         <div class="extra-details">
                             <div class="dob">
@@ -135,6 +135,25 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+    
+            function updateFontSize() {
+                var $element = $('#Text-resize'); // The name ID
+    
+                // Get the text content and remove extra spaces
+                var text = $element.text().replace(/\s+/g, ' ').trim();
+    
+                // Set the font size based on the length of the text
+                $element.css('font-size', text.length === 18 ? '20px' : '15px');
+            }
+    
+            // Call the function initially and whenever the content changes
+            updateFontSize();
+            $('#Text-resize').on('input', updateFontSize);
+        });
+    </script>
  @include('admin.students._datatables-script')
 
 @endsection
