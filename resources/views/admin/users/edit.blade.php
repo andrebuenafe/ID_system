@@ -32,7 +32,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-success btn-sm">Update User</button>
-                <a href="{{ route('students.index') }}" class="btn btn-secondary btn-sm">Cancel</a>
+                <a href="{{ route('users.index') }}" class="btn btn-secondary btn-sm">Cancel</a>
             </form>
         </div>
     </div>

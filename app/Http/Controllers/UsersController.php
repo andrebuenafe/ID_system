@@ -112,13 +112,9 @@ public function generateDatatables($users)
             $actionButtons = '<a href="' . route("users.edit", $data->id) . '" data-id="' . $data->id . '" class="btn btn-sm btn-warning editUser">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form action="' . route("users.destroy", $data->id) . '" method="POST" class="d-inline">
-                                ' . csrf_field() . '
-                                ' . method_field('DELETE') . '
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="confirmDelete(' . $data->id . ')">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>';
+                                <button data-id="'.$data->id.'" class="btn btn-sm btn-danger" onclick="confirmDeleteUser('.$data->id.')">
+                                <i class="fas fa-trash"></i>
+                                </button>';
 
 
             return $actionButtons;

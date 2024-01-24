@@ -152,7 +152,7 @@
                     $("#selected_course_color").val(color.toHexString());
                 }
             });
-    
+
             $("#course").change(function () {
                 if ($(this).val() === "addNewCourse") {
                     $("#new_course").show();
@@ -162,7 +162,7 @@
                     $("#course_color").spectrum("set", getCourseColor($(this).val()));
                 }
             });
-    
+
             // Function to get the course color
             function getCourseColor(course) {
                 // Define default color or use the predefined color based on the selected course
@@ -176,10 +176,10 @@
                     'MARINE': '#993333',
                     'HM': '#ddddbb',
                 };
-    
+
                 return courseColors[course] || defaultColor;
             }
         });
 </script>
-    
+
 @endsection
