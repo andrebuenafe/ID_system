@@ -199,7 +199,7 @@ class StudentsController extends Controller
                 'school_id' => ['required','string','max:255',
                     Rule::unique('students')->ignore($student->id),
                 ],
-                'course' => 'nullable|string|max:255',
+                'course' => 'required|string|max:255',
                 'new_course' => 'nullable|sometimes|required_if:course,addNewCourse|string|max:255',
                 'img' => 'required|file|max:9024|mimes:jpeg,png',
                 'parentsname' => 'required|string|max:255',
