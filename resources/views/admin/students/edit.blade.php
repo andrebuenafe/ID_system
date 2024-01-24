@@ -32,7 +32,7 @@
                         value="{{ $students->address }}">
                 </div>
 
-               
+
 
                 <div class="form-group col-md-6">
                     <label for="school_id">School ID</label>
@@ -53,10 +53,10 @@
                     <input type="text" name="new_course" id="new_course" class="form-control mt-2 text-uppercase" placeholder="Enter New Course" style="display: none;">
                     <input type="hidden" id="selected_course_color" name="selected_course_color" />
                 </div>
-                
+
                 <div class="form-group col-md-6">
                     <label for="course_color">Course Color</label>
-                    <input type="text" class="form-control" id="course_color" name="course_color" />
+                    <input type="text" class="form-control" id="course_color" name="course_color" value="{{$students->course_color}}" />
                 </div>
 
                 <div class="form-group col-md-6">
@@ -134,47 +134,47 @@
 
     <!-- Spektrum Color Changer Script -->
 <script>
-    $(document).ready(function () {
-        // Initialize Spectrum color picker
-        $("#course_color").spectrum({
-            preferredFormat: "hex",
-            showInput: true,
-            showPalette: true,
-            palette: [
-                ["#ff914d", "#4d79ff", "#009900", "#990099", "#ffff00", "#993333", "#ddddbb"],
-                // Add more colors if needed
-            ],
-            change: function(color) {
-                $("#selected_course_color").val(color.toHexString());
+        $(document).ready(function () {
+            // Initialize Spectrum color picker
+            $("#course_color").spectrum({
+                preferredFormat: "hex",
+                showInput: true,
+                showPalette: true,
+                palette: [
+                    ["#ff914d", "#4d79ff", "#009900", "#990099", "#ffff00", "#993333", "#ddddbb"],
+                    // Add more colors if needed
+                ],
+                change: function(color) {
+                    $("#selected_course_color").val(color.toHexString());
+                }
+            });
+
+            $("#course").change(function () {
+                if ($(this).val() === "addNewCourse") {
+                    $("#new_course").show();
+                } else {
+                    $("#new_course").hide();
+                    // Set the default color or the predefined color based on the selected course
+                    $("#course_color").spectrum("set", getCourseColor($(this).val()));
+                }
+            });
+
+            // Function to get the course color
+            function getCourseColor(course) {
+                // Define default color or use the predefined color based on the selected course
+                var defaultColor = '#cccccc';
+                var courseColors = {
+                    'BSIT': '#ff914d',
+                    'BEED': '#4d79ff',
+                    'BSED-Math': '#009900',
+                    'BSED-SS': '#990099',
+                    'BSBA': '#ffff00',
+                    'MARINE': '#993333',
+                    'HM': '#ddddbb',
+                };
+
+                return courseColors[course] || defaultColor;
             }
         });
-
-        $("#course").change(function () {
-            if ($(this).val() === "addNewCourse") {
-                $("#new_course").show();
-            } else {
-                $("#new_course").hide();
-                // Set the default color or the predefined color based on the selected course
-                $("#course_color").spectrum("set", getCourseColor($(this).val()));
-            }
-        });
-
-        // Function to get the course color
-        function getCourseColor(course) {
-            // Define default color or use the predefined color based on the selected course
-            var defaultColor = '#cccccc';
-            var courseColors = {
-                'BSIT': '#ff914d',
-                'BEED': '#4d79ff',
-                'BSED-Math': '#009900',
-                'BSED-SS': '#990099',
-                'BSBA': '#ffff00',
-                'MARINE': '#993333',
-                'HM': '#ddddbb',
-            };
-
-            return courseColors[course] || defaultColor;
-        }
-    });
 </script>
 @endsection

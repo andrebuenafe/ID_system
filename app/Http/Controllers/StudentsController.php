@@ -57,7 +57,7 @@ class StudentsController extends Controller
                 'signature' => 'required|file|max:9024|mimes:jpeg,png',
                 'school_id' => 'required|string|max:255|unique:students',
                 'course' => 'required|string|max:255',
-                'new_course' => 'sometimes|required_if:course,addNewCourse|string|max:255',
+                'new_course' => 'nullable|sometimes|required_if:course,addNewCourse|string|max:255',
                 'img' => 'required|file|max:9024|mimes:jpeg,png',
                 'parentsname' => 'required|string|max:255',
                 'emcontact' => 'required|string|max:255',
@@ -155,28 +155,12 @@ class StudentsController extends Controller
      */
     public function show($id)
     {
-        // dd($id);
-        $student = Student::where('id','=',$id)->first();
-        $courseColor = '';
-        if($student->course == "BSIT"){
-            $courseColor = '#ff914d';
-        }else if($student->course == "BEED"){
-            $courseColor = '#4d79ff';
-        }else if($student->course == "BSED-SS"){
-            $courseColor = '#990099';
-        }else if($student->course == "BSED-Math"){
-            $courseColor = '#009900';
-        }else if($student->course == "BSBA"){
-            $courseColor = '#ffff00';
-        }else if($student->course == "MARINE"){
-            $courseColor = '#993333';
-        }else if($student->course == "HM"){
-            $courseColor = '#ddddbb';
-        }
-        return view('admin.students.show',[
-            'student' => $student,
-            'courseColor' => $courseColor
-        ]);
+
+        $student = Student::findOrFail($id);
+        $courseColor = $student->course_color;
+
+    return view('admin.students.show', ['student' => $student,'courseColor' => $courseColor,]);
+
     }
 
     /**
@@ -187,7 +171,7 @@ class StudentsController extends Controller
      */
     public function edit($id)
     {
-        $students = Student::findOrFail($id); 
+        $students = Student::findOrFail($id);
         // $staff = User::where('role','=',2)->get();
 
         return view('admin.students.edit')->with(['students' => $students,]);
@@ -216,7 +200,7 @@ class StudentsController extends Controller
                     Rule::unique('students')->ignore($student->id),
                 ],
                 'course' => 'required|string|max:255',
-                'new_course' => 'sometimes|required_if:course,addNewCourse|string|max:255',
+                'new_course' => 'nullable|sometimes|required_if:course,addNewCourse|string|max:255',
                 'img' => 'required|file|max:9024|mimes:jpeg,png',
                 'parentsname' => 'required|string|max:255',
                 'emcontact' => 'required|string|max:255',
@@ -279,7 +263,7 @@ class StudentsController extends Controller
                 'qr' => $students_qr,
                 'signature' => $students_signature,
                 'school_id' => $request->school_id,
-                'course' => $request->course === 'addNewCourse' ? $request->new_course : $request->course,
+                'course' => $request->course === 'addNewCourse' ? (string)$request->new_course : $request->course,
                 'img' => $students_img,
                 'parents_name' => $request->parentsname,
                 'em_contact' => $request->emcontact,
@@ -287,6 +271,7 @@ class StudentsController extends Controller
                 'sy_started' => $request->sy_started,
                 'course_color' => $courseColor,
             ]);
+
 
             $student = Student::all();
             $message = "Students Updated Successfully!";
